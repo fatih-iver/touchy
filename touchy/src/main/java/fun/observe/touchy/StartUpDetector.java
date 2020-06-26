@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 public class StartUpDetector extends ContentProvider {
+
     @Override
     public boolean onCreate() {
         return false;
@@ -47,7 +48,7 @@ public class StartUpDetector extends ContentProvider {
     @Override
     public void attachInfo(Context context, ProviderInfo info) {
         super.attachInfo(context, info);
-        Touchy.start(context);
+        Touchy.start();
     }
 
 }
