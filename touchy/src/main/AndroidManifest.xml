@@ -1,2 +1,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="fun.observe.touchy" />
+    package="fun.observe.touchy">
+
+    <application>
+
+        <provider
+            android:name=".StartUpDetector"
+            android:authorities="fun.observe.touchy.detector"
+            android:exported="false" />
+
+    </application>
+
+</manifest>
