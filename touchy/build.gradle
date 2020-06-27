@@ -1,4 +1,5 @@
 apply plugin: 'com.android.library'
+apply plugin: 'maven-publish'
 
 android {
     compileSdkVersion 29
@@ -27,7 +28,69 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     implementation 'androidx.appcompat:appcompat:1.1.0'
-    testImplementation 'junit:junit:4.12'
+    testImplementation 'junit:junit:4.13'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+}
+
+task sourcesJar(type: Jar) {
+    archiveClassifier.set("sources")
+    from android.sourceSets.main.java.srcDirs
+}
+
+afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
+
+                groupId = 'fun.observe'
+                artifactId = 'touchy'
+                version = '1.0.0'
+
+                from components.release
+                artifact sourcesJar
+
+                pom {
+
+                    name = 'Touchy'
+                    description = 'Global Touch Listener for Android'
+                    url = 'https://github.com/fatih-iver/touchy'
+
+                    licenses {
+                        license {
+                            name = 'GPL-3.0 License'
+                            url = 'http://www.gnu.org/licenses/gpl-3.0.tr.html'
+                        }
+                    }
+
+                    developers {
+                        developer {
+                            id = 'fatih-iver'
+                            name = 'Fatih'
+                            email = 'fatih.iver@gmail.com'
+                        }
+                    }
+
+                    scm {
+                        url = 'https://github.com/fatih-iver/touchy'
+                    }
+                }
+
+            }
+        }
+
+        repositories {
+            maven {
+
+                url = "https://api.bintray.com/maven/fiver6/maven-repository/touchy"
+
+                credentials {
+                    username = 'fiver6'
+                    password = '${BINTRAY_API_KEY}'
+                }
+
+            }
+        }
+
+    }
 }

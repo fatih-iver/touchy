@@ -25,4 +25,12 @@ public class MotionEventBroadcaster {
         motionEventMutableLiveData.observe(owner, motionEventReceiver);
     }
 
+    public static void removeReceiver(MotionEventReceiver motionEventReceiver) {
+        motionEventMutableLiveData.removeObserver(motionEventReceiver);
+    }
+
+    public static void removeReceivers(LifecycleOwner owner) {
+        motionEventMutableLiveData.removeObservers(owner);
+    }
+
 }

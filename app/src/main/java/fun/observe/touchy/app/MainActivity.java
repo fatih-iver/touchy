@@ -13,28 +13,29 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = MainActivity.class.getName();
 
-
-    static {
-        MotionEventBroadcaster.registerReceiver(new MotionEventReceiver() {
-            @Override
-            protected void onReceive(MotionEvent motionEvent) {
-                Log.d(TAG, motionEvent.toString());
-            }
-        });
-    }
+    private MotionEventReceiver motionEventReceiver;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(fun.observe.touchy.app.R.layout.activity_main);
 
-        MotionEventBroadcaster.registerReceiver(this, new MotionEventReceiver() {
+        motionEventReceiver = new MotionEventReceiver() {
             @Override
             protected void onReceive(MotionEvent motionEvent) {
                 Log.d(TAG, motionEvent.toString());
             }
-        });
+        };
+
+        MotionEventBroadcaster.registerReceiver(this, motionEventReceiver);
 
     }
 
+    @Override
+    protected void onDestroy() {
+        if(motionEventReceiver != null){
+            MotionEventBroadcaster.removeReceiver(motionEventReceiver);
+        }
+        super.onDestroy();
+    }
 }

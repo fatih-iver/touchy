@@ -5,7 +5,7 @@
 
         <provider
             android:name=".StartUpDetector"
-            android:authorities="fun.observe.touchy.detector"
+            android:authorities="${applicationId}.start-up.detector"
             android:exported="false" />
 
     </application>
