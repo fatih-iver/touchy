@@ -10,7 +10,7 @@ Touchy provides this application-wide solution. It is also super easy to use.
 
 Just add it as a dependency.
 
-```
+```Java
 implementation 'fun.observe:touchy:1.0.0'
 ```
 
@@ -18,7 +18,7 @@ implementation 'fun.observe:touchy:1.0.0'
 
 Create a new *MotionEventReceiver* object and register it to the *MotionEventBroadcaster*. Do your work inside the *onReceive* method.
 
-```
+```Java
 MotionEventBroadcaster.registerReceiver(new MotionEventReceiver() {
     @Override
     protected void onReceive(MotionEvent motionEvent) {
