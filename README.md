@@ -1,3 +1,6 @@
+>This is my undergraudate project so it is meant to be used for research but not for production. You can freely inspire yourself by looking at the code but trying to use for production, I wouldn't do it. 
+
+
 # Touchy
 
 Touchy is an Android library that intercepts all touch events and lets you access those intercepted touch events from a single place.
